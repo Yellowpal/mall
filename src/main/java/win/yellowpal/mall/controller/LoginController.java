@@ -1,11 +1,14 @@
 package win.yellowpal.mall.controller;
 
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import win.yellowpal.mall.result.CodeMsg;
 import win.yellowpal.mall.result.Result;
@@ -28,9 +31,8 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value="/login",method=RequestMethod.POST)
-	public Result<String> login(LoginVo loginVo){
-		
-		logger.info(loginVo.toString());
+	@ResponseBody
+	public Result<String> login(@Valid LoginVo loginVo){
 		
 		if(userService.login(loginVo)){
 			return Result.success("success");
