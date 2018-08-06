@@ -17,42 +17,42 @@ import win.yellowpal.mall.service.TestService;
 @Controller
 @RequestMapping("/demo")
 public class DemoController {
-	
+
 	@Autowired
 	TestService testService;
-	
+
 	@Autowired
 	RedisService redisService;
-	
-	@RequestMapping("/")
+
+	@RequestMapping("")
 	@ResponseBody
-	public String index(){
+	public String index() {
 		return "demo index";
 	}
-	
+
 	@RequestMapping("/demo")
-	public String demo(Model model){
-		 model.addAttribute("demo", "hahahahha测试");
-		
+	public String demo(Model model) {
+		model.addAttribute("demo", "hahahahha测试");
+
 		return "demo";
 	}
-	
+
 	@RequestMapping("/db/get")
-    @ResponseBody
-    public Result<Test> dbGet() {
+	@ResponseBody
+	public Result<Test> dbGet() {
 		Test test = testService.getById(1);
-        return Result.success(test);
-    }
-	
+		return Result.success(test);
+	}
+
 	@RequestMapping("/redis/get")
-    @ResponseBody
-    public Result<Object> redisGet() {
-		
-		Test test = testService.getById(1);
-		
-		redisService.setObj("test", JSON.toJSON(test));
-		
+	@ResponseBody
+	public Result<Object> redisGet() {
+
+//		Test test = testService.getById(1);
+//
+//		redisService.setObj("test", JSON.toJSON(test));
+
 		Object ret = redisService.getObj("test");
-        return Result.success(ret);
-    }
+		return Result.success(ret);
+	}
 }
