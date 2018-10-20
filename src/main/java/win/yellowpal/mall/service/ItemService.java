@@ -24,4 +24,9 @@ public class ItemService {
 	public Item getById(long id){
 		return itemDao.getById(id);
 	}
+	
+	public boolean reduceStock(long saleStock, long id) {
+		int ret = itemDao.updateStock(saleStock, id);
+		return ret > 0;
+	}
 }

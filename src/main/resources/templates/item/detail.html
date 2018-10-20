@@ -36,4 +36,10 @@
 </table>
 <input type="hidden" id="itemId" th:value="${item.id}">
 </body>
+<script type="text/javascript">
+
+function order(){
+	window.location.href = "/order/order?userId=1&itemId="+$('#itemId').val();
+}
+</script>
 </html>
